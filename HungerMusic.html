@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_526482_0nqqjq5xrno5stt9.css">
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body, section {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        font: 14px/1.5 cursive;
+      }
+      ul, li {
+        list-style: none;
+      }
+      .clearfix::after {
+        content: '';
+        clear: both;
+        display: block;
+      }
+      main {
+        padding-top: 12vh;
+        height: calc(100% - 24vh);
+      }
+      footer {
+        height: 24vh;
+      }
+      .layout {
+        margin: 0 auto;
+        width: 600px;
+      }
+      @media (min-width: 700px) {
+        .layout {
+          width: 600px;
+        }
+      }
+
+      @media (min-width: 900px) {
+        .layout {
+          width: 800px;
+        }
+      }
+
+      @media (min-width: 1000px) {
+        .layout {
+          width: 900px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .layout {
+          width: 1100px;
+        }
+      }
+      .backdrop {
+        background: url(http://cloud.hunger-valley.com/music/public_tuijian_billboard.jpg-small) center center no-repeat;
+        background-size: cover;
+        position: absolute;
+        left: -10px;
+        top: -10px;
+        bottom: -10px;
+        right: -10px;
+        z-index: -1;
+        filter: blur(4px);
+      }
+      .backdrop::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+      figure {
+        background-image: url(http://cloud.hunger-valley.com/music/public_tuijian_billboard.jpg-small);
+        background-size: cover;
+        background-position: center center;
+        width: 50vh;
+        height: 50vh;
+      }
+      .tag {
+        margin-top: 4vh;
+        text-align: center;
+        display: flex;
+      }
+      .tag .iconfont {
+        color: #fff;
+        opacity: 0.4;
+        font-size: 5vh;
+        cursor: pointer;
+        flex: 1;
+      }
+      .tag .iconfont:hover {
+        opacity: 0.9;
+      }
+      .box {
+        float: left;
+      }
+      .content {
+        margin-left: 60vh;
+        color: #fff;
+      }
+      .content .sum {
+        font-size: 2vh;
+        padding: 0.8vh 1.6vh;
+        background: #1cadc5;
+      }
+      .content h1 {
+        font-size: 6vh;
+        margin-top: 2vh;
+      }
+      .content .icon {
+        display: flex;
+      }
+      .content .iconfont {
+        flex: 1;
+        margin-top: 12vh;
+        font-size: 3vh;
+      }
+      .content .iconfont span {
+        padding-left: 1vh;
+      }
+      .content .ct {
+        margin-top: 10vh;
+        display: flex;
+        align-items: center;
+      }
+      .ct .bar {
+        flex: 1;
+        height: 0.8vh;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 0.2vh;
+        position: relative;
+      }
+      .ct .bar .tempo {
+        position: absolute;
+        height: 0.8vh;
+        width: 20%;
+        background-color: #fff;
+        border-radius: 0.2vh;
+      }
+      .ct .time {
+        width: 3vh;
+        font-size: 2vh;
+        margin-left: 1vh;
+      }
+      .content .singer {
+        margin-top: 2vh;
+        font-size: 2vh;
+        opacity: 0.6;
+      }
+      footer {
+        height: 24vh;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 -0.25vh 0.25vh 0.25vh rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+      footer>.layout {
+        position: relative;
+      }
+      footer .layout .iconfont {
+        position: absolute;
+        top: 6vh;
+        opacity: 0;
+        cursor: pointer;
+        font-size: 6vh;
+      }
+      footer:hover .iconfont {
+        opacity: 0.6;
+      }
+      footer .iconfont:hover {
+        opacity: 1;
+      }
+      footer .icon-left {
+        left: -8vh;
+      }
+      footer .icon-right {
+        right: -8vh;
+      }
+      footer .menu {
+        position: relative;
+        overflow: hidden;
+        height: 24vh;
+      }
+      footer .menu>ul {
+        position: absolute;
+        left: 0;
+      }
+      footer ul>li {
+        float: left;
+        width: 20vh;
+        height: 20vh;
+        text-align: center;
+        cursor: pointer;
+        margin: 2vh;
+      }
+      footer li .nav {
+        height: 16vh;
+        background-size: cover;
+        background-position: center center;
+      }
+      footer li:hover {
+        box-shadow: 0 0 .5vh .5vh rgba(255, 255, 255, 0.8);
+      }
+      footer h3 {
+        font-size: 2vh;
+        margin-top: 1vh;
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="backdrop"></div>
+    <section>
+      <main class="layout clearfix">
+        <div class="box">
+          <figure></figure>
+          <div class="tag">
+            <span class="iconfont icon-heart"></span>
+            <span class="iconfont icon-play"></span>
+            <span class="iconfont icon-next"></span> 
+          </div>
+        </div>
+        <div class="content">
+          <span class="sum">Billboard</span>
+          <h1>Live While We're Young</h1>
+          <div class="icon clearfix">
+            <div class="iconfont icon-earphone"><span>2333</span></div>
+            <div class="iconfont icon-heart"><span>2333</span></div>
+            <div class="iconfont icon-like"><span>22</span></div>    
+          </div>
+          <div class="ct">
+            <div class="bar">
+              <div class="tempo"></div>
+            </div>
+            <div class="time">0:00</div>
+          </div>
+          <h5 class="singer">One Direction</h5>
+          <div class="lyric">
+            <p></p>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <div class="layout">
+          <span class="iconfont icon-left"></span>
+          <span class="iconfont icon-right"></span>
+          <div class="menu">
+            <ul class="clearfix">
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/17-10-24/1906806.jpg-small)"></div>
+                <h3>我的最爱</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_spring.jpg-small)"></div>
+                <h3>漫步春天</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_autumn.jpg-small)"></div>
+                <h3>秋日私语</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_winter.jpg-small)"></div>
+                <h3>温暖冬日</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_rege.jpg-small)"></div>
+                <h3>热歌</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_ktv.jpg-small)"></div>
+                <h3>KTV金曲</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_billboard.jpg-small)"></div>
+                <h3>Billboard</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_chengmingqu.jpg-small)"></div>
+                <h3>成名曲</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_wangluo.jpg-small)"></div>
+                <h3>网络歌曲</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_kaiche.jpg-small)"></div>
+                <h3>开车</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_yingshi.jpg-small)"></div>
+                <h3>影视</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_tuijian_suibiantingting.jpg-small)"></div>
+                <h3>随便听听</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_shiguang_jingdianlaoge.jpg-small)"></div>
+                <h3>经典老歌</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_shiguang_70hou.jpg-small)"></div>
+                <h3>70后</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_shiguang_80hou.jpg-small)"></div>
+                <h3>80后</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_shiguang_90hou.jpg-small)"></div>
+                <h3>90后</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_shiguang_xinge.jpg-small)"></div>
+                <h3>火爆新歌</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_shiguang_erge.jpg-small)"></div>
+                <h3>儿歌</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_shiguang_lvxing.jpg-small)"></div>
+                <h3>旅行</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_shiguang_yedian.jpg-small)"></div>
+                <h3>夜店</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_fengge_liuxing.jpg-small)"></div>
+                <h3>流行</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_fengge_yaogun.jpg-small)"></div>
+                <h3>摇滚</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_fengge_minyao.jpg-small)"></div>
+                <h3>民谣</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_fengge_qingyinyue.jpg-small)"></div>
+                <h3>轻音乐</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_fengge_xiaoqingxin.jpg-small)"></div>
+                <h3>小清新</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_fengge_zhongguofeng.jpg-small)"></div>
+                <h3>中国风</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_fengge_dj.jpg-small)"></div>
+                <h3>DJ舞曲</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_fengge_dianyingyuansheng.jpg-small)"></div>
+                <h3>电影</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_xinqing_qingsongjiari.jpg-small)"></div>
+                <h3>轻松假日</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_xinqing_huankuai.jpg-small)"></div>
+                <h3>欢快旋律</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_xinqing_tianmi.jpg-small)"></div>
+                <h3>甜蜜感受</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_xinqing_jimo.jpg-small)"></div>
+                <h3>寂寞</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_xinqing_qingge.jpg-small)"></div>
+                <h3>单身情歌</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_xinqing_shuhuan.jpg-small)"></div>
+                <h3>舒缓节奏</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_xinqing_yonglanwuhou.jpg-small)"></div>
+                <h3>慵懒午后</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_xinqing_shanggan.jpg-small)"></div>
+                <h3>伤感</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_yuzhong_huayu.jpg-small)"></div>
+                <h3>华语</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_yuzhong_oumei.jpg-small)"></div>
+                <h3>欧美</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_yuzhong_riyu.jpg-small)"></div>
+                <h3>日语</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_yuzhong_hanyu.jpg-small)"></div>
+                <h3>韩语</h3>
+              </li>
+              <li><div class="nav" style="background-image:url(http://cloud.hunger-valley.com/music/public_yuzhong_yueyu.jpg-small)"></div>
+                <h3>粤语</h3>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </section>
+    <section></section>
+  </body>
+</html>
